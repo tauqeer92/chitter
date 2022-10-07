@@ -1,0 +1,24 @@
+<h1>CHITTER TIMELINE</h1>
+
+<h3> LIST OF PEEPS</h3>
+
+<br>
+<% @peeps.reverse.each do |peep|%>
+   <div>
+    <label> USER ID: </label> <%= peep.user_id %>
+   </div>
+
+   <div>
+    <label>SUBJECT: </label> <%= peep.subject %>
+   </div>
+
+    <div>
+    <label>CONTENT</label> <%= peep.content %>
+    </div>
+
+    <div>
+   
+     <label>Time</label> <%= peep.time %>
+    </div>
+<br>
+<%end%>

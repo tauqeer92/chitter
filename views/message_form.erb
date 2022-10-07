@@ -1,0 +1,21 @@
+<Label> USER:</Label>
+<%= @user%>
+<%= @user_id %>
+<form method="POST" action="/peeps">
+  <div>
+    <Label> Subject </Label>
+    <input type="text" name="subject">
+  </div>
+
+  <div>
+    <Label> Content </Label>
+    <input type="text" name="content">
+  </div>
+
+   <%# <div>
+    <Label> User </Label>
+    <input type="text" name="user_id">
+  </div> %>
+
+  <input type="Submit" />
+</form>
