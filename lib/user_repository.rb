@@ -10,6 +10,7 @@ class UserRepository
             user.id = record['id']
             user.name = record['name']
             user.email = record['email']
+            user.password = record['password']
             users << user
         end
         return users
@@ -24,12 +25,13 @@ class UserRepository
       user.id = first['id']
       user.name = first['name']
       user.email = first['email']
+      user.password = record['password']
       return user
     end
 
     def create(user)
-      sql = 'INSERT INTO users (name, email) VALUES ($1, $2);'
-      sql_params = [user.name, user.email]
+      sql = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3);'
+      sql_params = [user.name, user.email, user.password]
       DatabaseConnection.exec_params(sql, sql_params)
     end
 

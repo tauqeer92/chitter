@@ -29,9 +29,10 @@ class Application < Sinatra::Base
     @user = params[:name]
     user.name = @user
     user.email = params[:email]
+    user.password = params[:password]
     repo.create(user)
     
-    return erb(:message_form)
+    redirect '/peeps'
   end
 
   get '/message_form' do
@@ -55,6 +56,35 @@ class Application < Sinatra::Base
     repo.create(peep)
     @peeps = repo.all
     return erb(:peeps)
+  end
+
+  get '/signup' do
+    return erb(:create_user_form)
+  end
+
+  get '/login' do
+    return erb(:login)
+  end
+
+  post '/login' do
+    login
+    redirect '/peeps'
+  end
+
+  def login
+    repo = UserRepository.new
+    all = repo.all
+    all.each do |user|
+      if user.email == params[:email]
+        if user.password != params[:password]
+            return 'Incorrect Password!'
+        end
+      elsif user.email != params[:email]
+        return erb(:create_user_form) 
+      else
+        return erb(:message_form)
+      end
+    end 
   end
 end
 end

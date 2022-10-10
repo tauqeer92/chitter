@@ -34,7 +34,7 @@ describe Application do
 
   context 'post/message_form' do
     it 'testing peeps' do
-        response = post('/message_form', subject: 'Exercise', content: 'Do more', time: '12:04', user_id: '1')
+        response = post('/peeps', subject: 'Exercise', content: 'Do more', user_id: '1')
         expect(response.status).to eq 200
         response = get('/peeps')
         expect(response.body).to include('Exercise')
@@ -46,6 +46,14 @@ describe Application do
         response = get('/peeps')
         expect(response.status).to eq 200
         expect(response.body).to include('Exercise')
+    end
+  end
+
+  context 'testing login page' do
+    it 'testing input types' do
+      response = get('/login')
+      expect(response.status).to eq 200
+      expect(response.body).to include('<input type="text" name="email"')
     end
   end
 
